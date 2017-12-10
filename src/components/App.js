@@ -44,6 +44,7 @@ class App extends React.Component {
             {
               Object
                 .keys(this.state.articles)
+                .slice(0, 25)
                 .map(key => <Story key={key} id={this.state.articles[key]} />)
             }
           </ol>

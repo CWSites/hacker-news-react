@@ -30,15 +30,28 @@ class Story extends React.Component {
 
   render() {
     const details = this.state.story;
-    const time = moment(details.time).startOf('day').fromNow();
+    const now = moment().unix();
+    let time = Math.trunc((now - details.time)/60/60);
+    let timeframe = "hour";
+    let domain = details.url;
+
+    // parse time and adjust timeframe as necessary
+    if (time > 1){
+      timeframe = "hours";
+    }
+
+    if (time > 24){
+      timeframe = "days";
+      time = Math.round(time / 24);
+    }
 
     return (
       <li>
         <span className="arrow">&#x25B2;</span>
         <span className="article-title">{details.title}</span>
-        <span className="article-domain">({details.url})</span>
+        <span className="article-domain">({domain})</span>
         <span className="article-details">
-          {details.score} points by {details.by} {time} | hide | {details.descendants} comments
+          {details.score} points by {details.by} {time} {timeframe} ago | hide | {details.descendants} comments
         </span>
       </li>
     )
