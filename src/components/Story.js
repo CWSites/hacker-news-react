@@ -1,9 +1,10 @@
 import React from 'react';
-import moment from 'moment';
 
 class Story extends React.Component {
   constructor(){
     super();
+
+    this.parseTime = this.parseTime.bind(this);
 
     // getInitialState
     this.state = {
@@ -28,29 +29,19 @@ class Story extends React.Component {
     });
   }
 
+  this.props.parseTime(this.state.story.time);
+  // this.props.parseDomain(this.state.story);
+
   render() {
     const details = this.state.story;
-    const now = moment().unix();
-    let time = Math.trunc((now - details.time)/60/60);
-    let timeframe = "hour";
-    let domain = details.url;
-
-    // parse time and adjust timeframe as necessary
-    if (time > 1){
-      timeframe = "hours";
-    }
-    if (time > 24){
-      timeframe = "days";
-      time = Math.round(time / 24);
-    }
 
     return (
       <li>
         <span className="arrow">&#x25B2;</span>
         <span className="article-title">{details.title}</span>
-        <span className="article-domain">({domain})</span>
+        <span className="article-domain">({details.url})</span>
         <span className="article-details">
-          {details.score} points by {details.by} {time} {timeframe} ago | hide | {details.descendants} comments
+          {details.score} points by {details.by} {details.readableTime} {details.timeFrame} ago | hide | {details.descendants} comments
         </span>
       </li>
     )
