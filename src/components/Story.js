@@ -5,9 +5,6 @@ class Story extends React.Component {
   constructor(){
     super();
 
-    this.parseDomain = this.parseDomain.bind(this);
-    this.parseTimestamp = this.parseTimestamp.bind(this);
-
     // getInitialState
     this.state = {
       story: {}
@@ -31,8 +28,9 @@ class Story extends React.Component {
     });
   }
 
+  // parse the full url and only return the domain
   parseDomain(url) {
-    let domain = '';
+    let domain = url;
 
     if (url) {
       if (url.indexOf("://") > -1) {
@@ -47,22 +45,23 @@ class Story extends React.Component {
 
   parseTimestamp(timestamp) {
     let now = moment().unix();
+    // let time = Math.trunc((now - timestamp)/60);
     let time = Math.trunc((now - timestamp)/60);
     let postTime = "";
 
-    // If less than one hour, show minutes
-    if (time < 60){
-      postTime = time + ' minutes';
-    }
-    // If greater than one hour, show hours
-    if (time > 119){
-      time = Math.round(time / 60);
-      postTime = time + ' hours';
-    }
-    // If greater than one day, show days
-    if (time > 1440){
-      time = Math.round(time / 24);
-      postTime = time + ' days';
+    // make time comparison in minutes to determine display
+    if (time > 2880) {
+      postTime = Math.trunc(time / 24) + ' days';
+    } else if (time > 1440) {
+      postTime = '1 day';
+    } else if (time > 120) {
+      postTime = Math.trunc(time / 60) + ' hours';
+    } else if (time > 60 && time < 120) {
+      postTime = '1 hour';
+    } else if (time < 60 && time > 1) {
+      postTime = Math.trunc(time) + ' minutes';
+    } else {
+      postTime = 'less than 1 minute';
     }
 
     return postTime;
@@ -70,16 +69,14 @@ class Story extends React.Component {
 
   render() {
     const details = this.state.story;
-    const postTime = this.parseTimestamp(details.time);
-    const domain = this.parseDomain(details.url);
 
     return (
       <li>
         <span className="arrow">&#x25B2;</span>
         <span className="article-title">{details.title}</span>
-        <span className="article-domain">({domain})</span>
+        <span className="article-domain">({this.parseDomain(details.url)})</span>
         <span className="article-details">
-          {details.score} points by {details.by} {postTime} ago | hide | {details.descendants} comments
+          {details.score} points by {details.by} {this.parseTimestamp(details.time)} ago | hide | {details.descendants} comments
         </span>
       </li>
     )
