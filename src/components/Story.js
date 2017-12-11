@@ -6,7 +6,7 @@ class Story extends React.Component {
     super();
 
     this.parseDomain = this.parseDomain.bind(this);
-    this.parseTime = this.parseTime.bind(this);
+    this.parseTimestamp = this.parseTimestamp.bind(this);
 
     // getInitialState
     this.state = {
@@ -45,33 +45,32 @@ class Story extends React.Component {
     return domain;
   }
 
-  parseTime(time) {
+  parseTimestamp(timestamp) {
     let now = moment().unix();
-    let timeago = Math.trunc((now - time)/60);
-    let timeframe = "hour";
+    let time = Math.trunc((now - timestamp)/60);
+    let postTime = "";
 
-    // parse time and adjust timeframe as necessary
-    if (timeago < 60){
-      timeframe = "minutes";
+    // If less than one hour, show minutes
+    if (time < 60){
+      postTime = time + ' minutes';
     }
-    if (timeago > 60){
-      timeframe = "hours";
-      timeago = Math.round(timeago / 60);
+    // If greater than one hour, show hours
+    if (time > 119){
+      time = Math.round(time / 60);
+      postTime = time + ' hours';
     }
-    if (timeago > 1440){
-      timeframe = "days";
-      timeago = Math.round(timeago / 24);
+    // If greater than one day, show days
+    if (time > 1440){
+      time = Math.round(time / 24);
+      postTime = time + ' days';
     }
 
-    return({
-      timeago: timeago,
-      timeframe: timeframe
-    });
+    return postTime;
   }
 
   render() {
     const details = this.state.story;
-    const timeDetails = this.parseTime(details.time);
+    const postTime = this.parseTimestamp(details.time);
     const domain = this.parseDomain(details.url);
 
     return (
@@ -80,7 +79,7 @@ class Story extends React.Component {
         <span className="article-title">{details.title}</span>
         <span className="article-domain">({domain})</span>
         <span className="article-details">
-          {details.score} points by {details.by} {timeDetails.timeago} {timeDetails.timeframe} ago | hide | {details.descendants} comments
+          {details.score} points by {details.by} {postTime} ago | hide | {details.descendants} comments
         </span>
       </li>
     )
