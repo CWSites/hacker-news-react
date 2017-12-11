@@ -16,8 +16,8 @@ class Story extends React.Component {
 
   componentDidMount() {
     const storyUrl = `https://hacker-news.firebaseio.com/v0/item/${this.props.id}.json`;
-    var that = this;
-    var url = storyUrl;
+    const that = this;
+    const url = storyUrl;
 
     fetch(url)
     .then(function(response) {
@@ -31,12 +31,18 @@ class Story extends React.Component {
     });
   }
 
-  parseDomain(story) {
-    // const story = {...this.state.story};
-    // console.log(story);
-    // const domain = story.url;
-    // story[key].domain = domain;
-    // this.setState({ story })
+  parseDomain(url) {
+    let domain = '';
+
+    if (url) {
+      if (url.indexOf("://") > -1) {
+        domain = url.split('/')[2];
+      } else {
+        domain = url.split('/')[0];
+      }
+    }
+
+    return domain;
   }
 
   parseTime(time) {
@@ -66,12 +72,13 @@ class Story extends React.Component {
   render() {
     const details = this.state.story;
     const timeDetails = this.parseTime(details.time);
+    const domain = this.parseDomain(details.url);
 
     return (
       <li>
         <span className="arrow">&#x25B2;</span>
         <span className="article-title">{details.title}</span>
-        <span className="article-domain">({details.url})</span>
+        <span className="article-domain">({domain})</span>
         <span className="article-details">
           {details.score} points by {details.by} {timeDetails.timeago} {timeDetails.timeframe} ago | hide | {details.descendants} comments
         </span>
