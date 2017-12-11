@@ -41,29 +41,31 @@ class Story extends React.Component {
 
   parseTime(time) {
     let now = moment().unix();
-    let timeago = Math.trunc((now - time)/60/60);
+    let timeago = Math.trunc((now - time)/60);
     let timeframe = "hour";
 
     // parse time and adjust timeframe as necessary
-    if (timeago > 1){
-      timeframe = "hours";
+    if (timeago < 60){
+      timeframe = "minutes";
     }
-    if (timeago > 24){
+    if (timeago > 60){
+      timeframe = "hours";
+      timeago = Math.round(timeago / 60);
+    }
+    if (timeago > 1440){
       timeframe = "days";
       timeago = Math.round(timeago / 24);
     }
 
-    // this.setState({
-    //   story: {
-    //     timeframe: timeframe,
-    //     timeago: timeago
-    //   }
-    // });
+    return({
+      timeago: timeago,
+      timeframe: timeframe
+    });
   }
 
   render() {
     const details = this.state.story;
-    this.parseTime(this.state.story.time);
+    const timeDetails = this.parseTime(details.time);
 
     return (
       <li>
@@ -71,7 +73,7 @@ class Story extends React.Component {
         <span className="article-title">{details.title}</span>
         <span className="article-domain">({details.url})</span>
         <span className="article-details">
-          {details.score} points by {details.by} {details.timeago} {details.timeframe} ago | hide | {details.descendants} comments
+          {details.score} points by {details.by} {timeDetails.timeago} {timeDetails.timeframe} ago | hide | {details.descendants} comments
         </span>
       </li>
     )
