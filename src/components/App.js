@@ -1,5 +1,4 @@
 import React from 'react';
-import moment from 'moment';
 
 import Header from './Header';
 import Footer from './Footer';
@@ -8,9 +7,6 @@ import Story from './Story';
 class App extends React.Component {
   constructor(){
     super();
-
-    this.parseDomain = this.parseDomain.bind(this);
-    this.parseTime = this.parseTime.bind(this);
 
     // getInitialState
     this.state = {
@@ -34,37 +30,6 @@ class App extends React.Component {
     });
   }
 
-  parseDomain(story) {
-    // const story = {...this.state.story};
-    // console.log(story);
-    // const domain = story.url;
-    // story[key].domain = domain;
-    // this.setState({ story })
-  }
-
-  parseTime(time) {
-    // console.log(story);
-    const now = moment().unix();
-    let timeago = Math.trunc((now - time)/60/60);
-    let timeframe = "hour";
-
-    // parse time and adjust timeframe as necessary
-    if (timeago > 1){
-      timeframe = "hours";
-    }
-    if (timeago > 24){
-      timeframe = "days";
-      timeago = Math.round(timeago / 24);
-    }
-
-    this.setState({
-      story: {
-        timeFrame: timeframe,
-        readableTime: timeago
-      }
-    });
-  }
-
   render(){
 
     return (
@@ -76,7 +41,7 @@ class App extends React.Component {
               Object
                 .keys(this.state.articles)
                 .slice(0, 25)
-                .map(key => <Story key={key} id={this.state.articles[key]} parseTime={this.parseTime} parseDomain={this.parseDomain} />)
+                .map(key => <Story key={key} id={this.state.articles[key]} />)
             }
           </ol>
           <a href="">More</a>

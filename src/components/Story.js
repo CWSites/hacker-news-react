@@ -1,9 +1,11 @@
 import React from 'react';
+import moment from 'moment';
 
 class Story extends React.Component {
   constructor(){
     super();
 
+    this.parseDomain = this.parseDomain.bind(this);
     this.parseTime = this.parseTime.bind(this);
 
     // getInitialState
@@ -29,11 +31,39 @@ class Story extends React.Component {
     });
   }
 
-  this.props.parseTime(this.state.story.time);
-  // this.props.parseDomain(this.state.story);
+  parseDomain(story) {
+    // const story = {...this.state.story};
+    // console.log(story);
+    // const domain = story.url;
+    // story[key].domain = domain;
+    // this.setState({ story })
+  }
+
+  parseTime(time) {
+    let now = moment().unix();
+    let timeago = Math.trunc((now - time)/60/60);
+    let timeframe = "hour";
+
+    // parse time and adjust timeframe as necessary
+    if (timeago > 1){
+      timeframe = "hours";
+    }
+    if (timeago > 24){
+      timeframe = "days";
+      timeago = Math.round(timeago / 24);
+    }
+
+    // this.setState({
+    //   story: {
+    //     timeframe: timeframe,
+    //     timeago: timeago
+    //   }
+    // });
+  }
 
   render() {
     const details = this.state.story;
+    this.parseTime(this.state.story.time);
 
     return (
       <li>
@@ -41,7 +71,7 @@ class Story extends React.Component {
         <span className="article-title">{details.title}</span>
         <span className="article-domain">({details.url})</span>
         <span className="article-details">
-          {details.score} points by {details.by} {details.readableTime} {details.timeFrame} ago | hide | {details.descendants} comments
+          {details.score} points by {details.by} {details.timeago} {details.timeframe} ago | hide | {details.descendants} comments
         </span>
       </li>
     )
