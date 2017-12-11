@@ -12,6 +12,7 @@ class App extends React.Component {
   constructor(){
     super();
 
+    this.parseDomain = this.parseDomain.bind(this);
     // getInitialState
     this.state = {
       articles: {}
@@ -34,6 +35,14 @@ class App extends React.Component {
     });
   }
 
+  parseDomain(key) {
+    const story = {...this.state.story};
+    console.log(story);
+    // const domain = story.url;
+    // story[key].domain = domain;
+    this.setState({ story })
+  }
+
   render(){
 
     return (
@@ -45,7 +54,7 @@ class App extends React.Component {
               Object
                 .keys(this.state.articles)
                 .slice(0, 25)
-                .map(key => <Story key={key} id={this.state.articles[key]} />)
+                .map(key => <Story key={key} id={this.state.articles[key]} parseDomain={this.parseDomain} />)
             }
           </ol>
           <a href="">More</a>

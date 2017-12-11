@@ -39,7 +39,6 @@ class Story extends React.Component {
     if (time > 1){
       timeframe = "hours";
     }
-
     if (time > 24){
       timeframe = "days";
       time = Math.round(time / 24);
