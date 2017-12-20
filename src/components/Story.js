@@ -28,6 +28,11 @@ class Story extends React.Component {
     });
   }
 
+  // shouldComponentUpdate -- need to add this here to prevent rendering until data is complete
+  // shouldComponentUpdate() {
+
+  // }
+
   // parse the full url and only return the domain
   parseDomain(url) {
     let domain = url;
@@ -69,14 +74,16 @@ class Story extends React.Component {
 
   render() {
     const details = this.state.story;
+    const domain = this.parseDomain(details.url);
+    const timestamp = this.parseTimestamp(details.time);
 
     return (
       <li>
         <span className="arrow">&#x25B2;</span>
         <span className="article-title">{details.title}</span>
-        <span className="article-domain">({this.parseDomain(details.url)})</span>
+        <span className="article-domain">({domain})</span>
         <span className="article-details">
-          {details.score} points by {details.by} {this.parseTimestamp(details.time)} ago | hide | {details.descendants} comments
+          {details.score} points by {details.by} {timestamp} ago | hide | {details.descendants} comments
         </span>
       </li>
     )
