@@ -15,21 +15,8 @@ class Main extends React.Component {
     };
   }
 
-  // eventually move this into redux store
   componentDidMount() {
-    var that = this;
-    var url = 'https://hacker-news.firebaseio.com/v0/topstories.json'
-
-    fetch(url)
-    .then(function(response) {
-      if (response.status >= 400) {
-        throw new Error("Bad response from server");
-      }
-      return response.json();
-    })
-    .then(function(data) {
-      that.setState({ articles: data });
-    });
+    this.props.loadPosts('https://hacker-news.firebaseio.com/v0/topstories.json');
   }
 
   render(){
