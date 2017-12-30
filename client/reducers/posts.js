@@ -4,23 +4,22 @@
 // 2. copy of current state
 
 function posts(state = [], action) {
-  // console.log(state);
-  // console.log(action.type);
 
   if(action.type == 'LOAD_POSTS') {
-	  console.log('The posts are loading');
+	  console.log('Loading Posts...');
 
     fetch(action.data)
-	    .then(function(response) {
-	      if (response.status >= 400) {
-	        throw new Error("Bad response from server");
-	      }
-	      return response.json();
-	    })
-	    .then(function(data) {
-	      state.articles = data
-	      console.log(state);
-	    }); 
+    .then(function(response) {
+      if (response.status >= 400) {
+        throw new Error("Bad response from server");
+      }
+      return response.json();
+    })
+    .then(function(data) {
+      state.posts = data
+    }); 
+
+	  console.log(state);
   }
 
   return state;

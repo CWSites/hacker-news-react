@@ -5,7 +5,7 @@ import posts from './reducers/posts';
 
 // create an object for the default data
 const defaultState = {
-  articles: {}
+  posts
 };
 
 const store = createStore(posts, defaultState);

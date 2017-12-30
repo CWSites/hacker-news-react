@@ -4,23 +4,12 @@ import Header from './Header';
 import Footer from './Footer';
 import Story from './Story';
 
-// old react app, temporarily not used
 class Main extends React.Component {
-  constructor(){
-    super();
-
-    // getInitialState
-    this.state = {
-      articles: {}
-    };
-  }
-
   componentDidMount() {
     this.props.loadPosts('https://hacker-news.firebaseio.com/v0/topstories.json');
   }
 
-  render(){
-
+  render() {
     return (
       <div>
         <Header />
@@ -28,9 +17,9 @@ class Main extends React.Component {
           <ol className="news-articles">
             {
               Object
-                .keys(this.state.articles)
+                .keys(this.props.posts)
                 .slice(0, 25)
-                .map(key => <Story key={key} id={this.state.articles[key]} />)
+                .map(key => <Story key={key} id={this.props.posts[key]} />)
             }
           </ol>
           <a href="">More</a>
