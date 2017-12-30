@@ -1,0 +1,57 @@
+import React from 'react';
+
+import Header from './Header';
+import Footer from './Footer';
+import Story from './Story';
+
+// old react app, temporarily not used
+class Main extends React.Component {
+  constructor(){
+    super();
+
+    // getInitialState
+    this.state = {
+      articles: {}
+    };
+  }
+
+  // eventually move this into redux store
+  componentDidMount() {
+    var that = this;
+    var url = 'https://hacker-news.firebaseio.com/v0/topstories.json'
+
+    fetch(url)
+    .then(function(response) {
+      if (response.status >= 400) {
+        throw new Error("Bad response from server");
+      }
+      return response.json();
+    })
+    .then(function(data) {
+      that.setState({ articles: data });
+    });
+  }
+
+  render(){
+
+    return (
+      <div>
+        <Header />
+        <div className="news">
+          <ol className="news-articles">
+            {
+              Object
+                .keys(this.state.articles)
+                .slice(0, 25)
+                .map(key => <Story key={key} id={this.state.articles[key]} />)
+            }
+          </ol>
+          <a href="">More</a>
+        </div>
+        <Footer />
+      </div>
+    )
+  }
+}
+
+export default Main;

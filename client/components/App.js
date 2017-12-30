@@ -1,55 +1,21 @@
 import React from 'react';
 
-import Header from './Header';
-import Footer from './Footer';
-import Story from './Story';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import * as actionCreators from '../actions/actionCreators';
 
-class App extends React.Component {
-  constructor(){
-    super();
+import Main from './Main';
 
-    // getInitialState
-    this.state = {
-      articles: {}
-    };
-  }
-
-  componentDidMount() {
-    var that = this;
-    var url = 'https://hacker-news.firebaseio.com/v0/topstories.json'
-
-    fetch(url)
-    .then(function(response) {
-      if (response.status >= 400) {
-        throw new Error("Bad response from server");
-      }
-      return response.json();
-    })
-    .then(function(data) {
-      that.setState({ articles: data });
-    });
-  }
-
-  render(){
-
-    return (
-      <div>
-        <Header />
-        <div className="news">
-          <ol className="news-articles">
-            {
-              Object
-                .keys(this.state.articles)
-                .slice(0, 25)
-                .map(key => <Story key={key} id={this.state.articles[key]} />)
-            }
-          </ol>
-          <a href="">More</a>
-        </div>
-        <Footer />
-      </div>
-    )
+function mapStateToProps(state) {
+  return {
+    posts: state.posts
   }
 }
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(actionCreators, dispatch);
+}
+
+const App = connect(mapStateToProps, mapDispatchToProps)(Main);
 
 export default App;
