@@ -35,9 +35,8 @@
     "webpack-hot-middleware": "^2.10.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "watch": "concurrently --names --prefix name \"npm run start\"",
-    "redux_start": "node devServer.js"
+    "start": "node devServer.js",
+    "watch": "concurrently --names --prefix name \"npm run start\""
   },
   "eslintConfig": {
     "extends": "./node_modules/react-scripts/.eslintrc"
