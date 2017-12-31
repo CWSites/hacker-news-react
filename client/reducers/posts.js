@@ -6,17 +6,20 @@
 function posts(state = [], action) {
 
   if(action.type == 'FETCH_POSTS') {
-	  console.log('Loading Posts...');
+	  state.status = 'fetching data';
+	  console.log(state);
 
     fetch(action.data)
     .then(function(response) {
     	if (response.status >= 400) {
-    		console.log('Bad response from server');
+    		state.status = 'problem receiving data: error ' + response.status;
+    		console.log(state);
     	}
     	return response.json();
     })
     .then(function(data) {
     	state.posts = data;
+    	state.status = 'data retrieved successfully';
     	console.log(state);
     });
   }
