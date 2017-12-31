@@ -19,7 +19,7 @@ class Story extends React.Component {
     fetch(url)
     .then(function(response) {
       if (response.status >= 400) {
-        throw new Error("Bad response from server");
+        console.log('Bad response from server');
       }
       return response.json();
     })

@@ -16,10 +16,10 @@ class Main extends React.Component {
         <div className="news">
           <ol className="news-articles">
             {
-              // Object
-              //   .keys(this.props.posts)
-              //   .slice(0, 25)
-              //   .map(key => <Story key={key} id={this.props.posts[key]} />)
+              Object
+                .keys(this.props.posts.posts)
+                .slice(0, 25)
+                .map(key => <Story key={key} id={this.props.posts.posts[key]} />)
             }
           </ol>
           <a href="">More</a>

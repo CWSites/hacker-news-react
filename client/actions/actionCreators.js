@@ -1,6 +1,6 @@
 export function fetchPosts(data) {
 	return {
-		type: 'LOAD_POSTS',
+		type: 'FETCH_POSTS',
 		data
 	}
 }

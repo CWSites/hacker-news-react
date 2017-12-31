@@ -5,21 +5,20 @@
 
 function posts(state = [], action) {
 
-  if(action.type == 'LOAD_POSTS') {
+  if(action.type == 'FETCH_POSTS') {
 	  console.log('Loading Posts...');
 
     fetch(action.data)
     .then(function(response) {
-      if (response.status >= 400) {
-        throw new Error("Bad response from server");
-      }
-      return response.json();
+    	if (response.status >= 400) {
+    		console.log('Bad response from server');
+    	}
+    	return response.json();
     })
     .then(function(data) {
-      state.posts = data
-    }); 
-
-	  console.log(state);
+    	state.posts = data;
+    	console.log(state);
+    });
   }
 
   return state;
