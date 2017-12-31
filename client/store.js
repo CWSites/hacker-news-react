@@ -1,13 +1,13 @@
 import { createStore, compse } from 'redux';
 
 // import the root reducer
-import posts from './reducers/posts';
+import rootReducer from './reducers/index';
 
 // create an object for the default data
 const defaultState = {
-  posts
+  posts: []
 };
 
-const store = createStore(posts, defaultState);
+const store = createStore(rootReducer, defaultState);
 
 export default store;

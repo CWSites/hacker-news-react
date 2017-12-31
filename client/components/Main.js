@@ -6,7 +6,7 @@ import Story from './Story';
 
 class Main extends React.Component {
   componentDidMount() {
-    this.props.loadPosts('https://hacker-news.firebaseio.com/v0/topstories.json');
+    this.props.fetchPosts('https://hacker-news.firebaseio.com/v0/topstories.json');
   }
 
   render() {
@@ -16,10 +16,10 @@ class Main extends React.Component {
         <div className="news">
           <ol className="news-articles">
             {
-              Object
-                .keys(this.props.posts)
-                .slice(0, 25)
-                .map(key => <Story key={key} id={this.props.posts[key]} />)
+              // Object
+              //   .keys(this.props.posts)
+              //   .slice(0, 25)
+              //   .map(key => <Story key={key} id={this.props.posts[key]} />)
             }
           </ol>
           <a href="">More</a>
