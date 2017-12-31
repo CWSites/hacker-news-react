@@ -5,7 +5,7 @@ import Footer from './Footer';
 import Story from './Story';
 
 class Main extends React.Component {
-  componentDidMount() {
+  componentWillMount() {
     this.props.fetchPosts('https://hacker-news.firebaseio.com/v0/topstories.json');
   }
 
@@ -16,13 +16,10 @@ class Main extends React.Component {
         <div className="news">
           <ol className="news-articles">
             {
-              Object
-                .keys(this.props.posts.posts)
-                .slice(0, 25)
-                .map(key => <Story key={key} id={this.props.posts.posts[key]} />)
+              this.props.posts.slice(0, 25).map((post, i) => <Story {...this.props} key={i} id={i} post={post} />)
             }
           </ol>
-          <a href="">More</a>
+          <a href="#">More</a>
         </div>
         <Footer />
       </div>
