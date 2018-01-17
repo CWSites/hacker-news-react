@@ -12,9 +12,13 @@ class Story extends React.Component {
   }
 
   componentDidMount() {
-    const storyUrl = `https://hacker-news.firebaseio.com/v0/item/${this.props.id}.json`;
+    console.log(this.props);
+
+    const storyUrl = `https://hacker-news.firebaseio.com/v0/item/${this.props.post}.json`;
     const that = this;
     const url = storyUrl;
+
+    console.log(url);
 
     fetch(url)
     .then(function(response) {
