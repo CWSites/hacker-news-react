@@ -8,7 +8,7 @@ import post_ids from './data/posts';
 
 // create an object for the default data
 const defaultState = {
-  posts: post_ids
+  posts: {post_ids: post_ids}
 };
 
 const store = createStore(rootReducer, defaultState);

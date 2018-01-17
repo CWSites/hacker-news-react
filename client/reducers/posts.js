@@ -1,4 +1,4 @@
-function posts(state = {}, action) {
+function posts(state = [], action) {
 
 	console.log(state);
 
@@ -10,7 +10,7 @@ function posts(state = {}, action) {
     fetch(action.url).then(function(response) {
     	response.json()
     .then(function(data) {
-    		state.posts	= data;
+    		state.post_ids	= data;
     		state.status = 'fetched data';
     		console.log (state);
     	});
