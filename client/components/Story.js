@@ -12,7 +12,7 @@ class Story extends React.Component {
   }
 
   componentDidMount() {
-    // console.log(this.props.posts);
+    console.log(this.props);
 
     const storyUrl = `https://hacker-news.firebaseio.com/v0/item/${this.props.post}.json`;
     const that = this;
