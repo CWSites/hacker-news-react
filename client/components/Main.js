@@ -9,6 +9,11 @@ class Main extends React.Component {
     this.props.fetchPosts('https://hacker-news.firebaseio.com/v0/topstories.json');
   }
 
+  componentDidMount() {
+    // console.log(this.props);
+    // this.props.updateDisplay(this.props.posts);    
+  }
+
   render() {
     return (
       <div>

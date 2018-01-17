@@ -3,12 +3,12 @@ import { createStore, compse } from 'redux';
 // import the root reducer
 import rootReducer from './reducers/index';
 
-// import dummy data for testing purposes
-import posts from './data/posts';
+// import default data for testing purposes
+import post_ids from './data/posts';
 
 // create an object for the default data
 const defaultState = {
-  posts
+  posts: post_ids
 };
 
 const store = createStore(rootReducer, defaultState);

@@ -1,15 +1,13 @@
-// a reducer takes in two things:
+function posts(state = {}, action) {
 
-// 1. the action (info about what happened)
-// 2. copy of current state
+	console.log(state);
 
-function posts(state = [], action) {
-
+	// fetch the posts
   if(action.type == 'FETCH_POSTS') {
 	  state.status = 'fetching data';
 	  console.log(state);
 
-    fetch(action.data)
+    fetch(action.url)
     .then(function(response) {
     	if (response.status >= 400) {
     		state.status = 'problem receiving data: error ' + response.status;
@@ -22,6 +20,11 @@ function posts(state = [], action) {
     	state.status = 'data retrieved successfully';
     	console.log(state);
     });
+  }
+
+  if(action.type == 'UPDATE_DISPLAY') {
+  	state.status = 'updating display';
+  	console.log(state);
   }
 
   return state;

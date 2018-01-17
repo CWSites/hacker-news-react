@@ -1,16 +1,17 @@
 // fetch post IDs
-export function fetchPosts(data) {
+export function fetchPosts(url) {
 	return {
 		type: 'FETCH_POSTS',
 		status,
-		data
+		url
 	}
 }
 
-// fetch post details
-export function fetchPostDetails(data) {
+// display posts on page
+export function updateDisplay(data) {
 	return {
-		type: 'FETCH_POST_DETAILS',
+		type: 'UPDATE_DISPLAY',
+		status,
 		data
 	}
 }
