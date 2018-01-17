@@ -15,7 +15,7 @@ class Main extends React.Component {
         <Header />
         <div className="news">
           <ol className="news-articles">
-            {this.props.posts.post_ids.slice(0, 25).map((post, i) => <Story {...this.props} key={i} id={i} post={post} />)}
+            {this.props.posts.slice(0, 25).map((post, i) => <Story {...this.props} key={i} id={i} post={post} />)}
           </ol>
           <a href="#">More</a>
         </div>

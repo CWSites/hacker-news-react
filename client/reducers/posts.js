@@ -1,28 +1,29 @@
 function posts(state = [], action) {
 
-	console.log(state);
-
 	// fetch the posts
-  if(action.type == 'FETCH_POSTS') {
-	  state.status = 'fetching data';
-	  console.log(state);
+	switch(action.type) {
+		case 'FETCH_POSTS': {
+			console.log('fetching data');
+			console.log(state);
 
-    fetch(action.url).then(function(response) {
-    	response.json()
-    .then(function(data) {
-    		state.post_ids	= data;
-    		state.status = 'fetched data';
-    		console.log (state);
-    	});
-    });
-  }
+	    fetch(action.url).then(function(response) {
+	    	response.json()
+	    .then(function(data) {
+	    		state = data;
+	    		console.log('data fetched');
+	    		console.log(state);
+	    	});
+	    });
 
-  if(action.type == 'UPDATE_DISPLAY') {
-  	state.status = 'updating display';
-  	console.log(state);
-  }
-
-  return state;
+	    return state;
+	  }
+	  case 'LOAD_MORE_POSTS': {
+	  	console.log('why is this firing...');
+	  	return state;
+	  }
+		default: 
+			return state;
+	}
 }
 
 export default posts;
