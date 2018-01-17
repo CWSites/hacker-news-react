@@ -18,15 +18,11 @@ class Story extends React.Component {
     const that = this;
     const url = storyUrl;
 
-    fetch(url)
-    .then(function(response) {
-      if (response.status >= 400) {
-        console.log('Bad response from server');
-      }
-      return response.json();
-    })
+    fetch(url).then(function(response) {
+      response.json()
     .then(function(data) {
-      that.setState({ story: data });
+        that.setState({ story: data });
+      });
     });
   }
 

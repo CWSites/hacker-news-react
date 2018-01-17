@@ -8,10 +8,10 @@ export function fetchPosts(url) {
 }
 
 // display posts on page
-export function updateDisplay(data) {
-	return {
-		type: 'UPDATE_DISPLAY',
-		status,
-		data
-	}
-}
+// export function updateDisplay(data) {
+// 	return {
+// 		type: 'UPDATE_DISPLAY',
+// 		status,
+// 		data
+// 	}
+// }

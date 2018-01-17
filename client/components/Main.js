@@ -5,13 +5,8 @@ import Footer from './Footer';
 import Story from './Story';
 
 class Main extends React.Component {
-  componentWillMount() {
-    this.props.fetchPosts('https://hacker-news.firebaseio.com/v0/topstories.json');
-  }
-
   componentDidMount() {
-    // console.log(this.props);
-    // this.props.updateDisplay(this.props.posts);    
+    this.props.fetchPosts('https://hacker-news.firebaseio.com/v0/topstories.json');
   }
 
   render() {
