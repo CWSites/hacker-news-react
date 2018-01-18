@@ -7,6 +7,9 @@ import Story from './Story';
 class Main extends React.Component {
   componentDidMount() {
     this.props.fetchPosts('https://hacker-news.firebaseio.com/v0/topstories.json');
+    if(this.props.posts.length > 2) {
+      this.props.displayPosts(this.props.posts);
+    }
   }
 
   render() {

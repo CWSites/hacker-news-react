@@ -7,6 +7,14 @@ export function fetchPosts(url) {
 	}
 }
 
+export function displayPosts(ids) {
+	return {
+		type: 'DISPLAY_POSTS',
+		status,
+		ids
+	}
+}
+
 // display posts on page
 export function loadMorePosts(number) {
 	return {
