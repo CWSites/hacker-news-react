@@ -13,6 +13,7 @@ pids
 
 # OS Crap
 .DS_Store
+client/.DS_Store
 
 # Dependency directories
 node_modules/
