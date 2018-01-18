@@ -12,7 +12,7 @@ class Main extends React.Component {
 
   fetchData() {
     fetch('https://hacker-news.firebaseio.com/v0/topstories.json')
-    .then(r => this.props.addPostsAction(r));
+    .then(response => response.json().then(data => this.props.addPostsAction(data)));
   }    
 
   render() {

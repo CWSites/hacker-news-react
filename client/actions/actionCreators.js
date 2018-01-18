@@ -1,10 +1,11 @@
-// fetch post IDs
-export function fetchPosts(url) {
-	return {
-		type: 'FETCH_POSTS',
-		status,
-		url
-	}
+// export this to be used by reducer, makes it more typo proof
+export const ADD_POSTS = 'ADD_POSTS'; 
+
+export function addPostsAction(post_ids) {
+  return {
+    type: 'ADD_POSTS', // all actions should have a type
+    payload: post_ids // we usually call the stuff carried in the actions 'payload'
+  }
 }
 
 // display posts on page
@@ -14,14 +15,4 @@ export function loadMorePosts(number) {
 		status,
 		number
 	}
-}
-
-// export this to be used by reducer, makes it more typo proof
-export const ADD_POSTS = 'ADD_POSTS'; 
-
-export function addPostsAction(posts) {
-  return {
-    type: 'ADD_POSTS', // all actions should have a type
-    payload: posts // we usually call the stuff carried in the actions 'payload'
-  }
 }
