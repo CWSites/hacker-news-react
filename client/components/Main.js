@@ -7,13 +7,15 @@ import Story from './Story';
 class Main extends React.Component {
 
   componentDidMount() {
+    // fetch top stories from hacker news API
     this.fetchData();
   }
 
   fetchData() {
     fetch('https://hacker-news.firebaseio.com/v0/topstories.json')
-    .then(response => response.json().then(data => this.props.addPostsAction(data)));
-  }    
+    .then(response => response.json()
+    .then(data => this.props.loadPosts(data)));
+  }
 
   render() {
     return (
