@@ -6,7 +6,17 @@ import Story from './Story';
 
 class Main extends React.Component {
   componentDidMount() {
-    this.props.fetchPosts('https://hacker-news.firebaseio.com/v0/topstories.json');
+    // this.props.fetchPosts('https://hacker-news.firebaseio.com/v0/topstories.json');
+
+    // let's kick off the fetch
+    fetch('https://hacker-news.firebaseio.com/v0/topstories.json')
+    .then(function(response) {
+      response.json()
+      .then(function(data) {
+        this.props.addPostsAction(data);
+      });
+    });
+
   }
 
   render() {
