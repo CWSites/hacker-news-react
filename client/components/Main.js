@@ -17,6 +17,11 @@ class Main extends React.Component {
     .then(data => this.props.loadPosts(data)));
   }
 
+  loadMorePosts(num_posts) {
+    console.log('load ' + num_posts + ' more posts...');
+
+  }
+
   render() {
     return (
       <div>
@@ -25,7 +30,7 @@ class Main extends React.Component {
           <ol className="news-articles">
             {this.props.posts.slice(0, 25).map((post, i) => <Story {...this.props.post} key={i} id={i} post={post} />)}
           </ol>
-          <a href="#">More</a>
+          <a href="#" onClick={() => this.loadMorePosts(25)}>More</a>
         </div>
         <Footer />
       </div>

@@ -11,6 +11,7 @@ class Story extends React.Component {
     };
   }
 
+  // TODO: need to bring over fetch from Main.js
   componentDidMount() {
     console.log(this.props);
 
