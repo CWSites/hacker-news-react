@@ -8,6 +8,8 @@ class Main extends React.Component {
   componentDidMount() {
     // this.props.fetchPosts('https://hacker-news.firebaseio.com/v0/topstories.json');
 
+    console.log(this.props.boundActionCreators);
+    
     // let's kick off the fetch
     fetch('https://hacker-news.firebaseio.com/v0/topstories.json')
     .then(function(response) {
@@ -16,6 +18,7 @@ class Main extends React.Component {
         this.props.addPostsAction(data);
       });
     });
+
 
   }
 
