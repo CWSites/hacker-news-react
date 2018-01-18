@@ -5,14 +5,13 @@ function posts(state = [], action) {
 		case 'FETCH_POSTS':
 			let newState = state;
 			console.log('fetching data');
-			console.log(state);
 
 	    fetch(action.url).then(function(response) {
 	    	response.json()
 	    .then(function(data) {
 	    		newState = data;
 	    		console.log('data fetched');
-		  		console.log(newState);
+	    		console.log(state);
 	    	});
 	    });
 
