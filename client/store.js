@@ -4,11 +4,11 @@ import { createStore, compse } from 'redux';
 import rootReducer from './reducers/index';
 
 // import default data for testing purposes
-import post_ids from './data/posts';
+// import post_ids from './data/posts';
 
 // create an object for the default data
 const defaultState = {
-  posts: post_ids
+  posts: []
 };
 
 const store = createStore(rootReducer, defaultState);

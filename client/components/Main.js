@@ -5,11 +5,16 @@ import Footer from './Footer';
 import Story from './Story';
 
 class Main extends React.Component {
+
   componentDidMount() {
-    this.props.fetchPosts('https://hacker-news.firebaseio.com/v0/topstories.json');
-    if(this.props.posts.length > 2) {
-      this.props.displayPosts(this.props.posts);
-    }
+    // fetch top stories from hacker news API
+    this.fetchData();
+  }
+
+  fetchData() {
+    fetch('https://hacker-news.firebaseio.com/v0/topstories.json')
+    .then(response => response.json()
+    .then(data => this.props.loadPosts(data)));
   }
 
   render() {
