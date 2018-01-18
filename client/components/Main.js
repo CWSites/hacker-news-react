@@ -5,20 +5,30 @@ import Footer from './Footer';
 import Story from './Story';
 
 class Main extends React.Component {
+
   componentDidMount() {
     // this.props.fetchPosts('https://hacker-news.firebaseio.com/v0/topstories.json');
 
-    console.log(this.props.boundActionCreators);
+    // console.log(this.props);
     
     // let's kick off the fetch
-    fetch('https://hacker-news.firebaseio.com/v0/topstories.json')
-    .then(function(response) {
-      response.json()
-      .then(function(data) {
-        this.props.addPostsAction(data);
-      });
-    });
+    // fetch('https://hacker-news.firebaseio.com/v0/topstories.json')
+    // .then(function(response) {
+    //   response.json()
+    //   .then(function(data) {
+    //     console.log(this.props);
+    //     this.props.addPostsAction(data);
+    //   });
+    // });
 
+
+    fetchData = () => {
+        this.fetchData('https://hacker-news.firebaseio.com/v0/topstories.json').then( // let's kick off the fetch
+        // when fetch is done, dispatch the action that our reducer will take
+            // console.log(this.props)
+            r => this.props.dispatch(addPostsAction(r))
+        );
+    }    
 
   }
 
