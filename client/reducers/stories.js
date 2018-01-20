@@ -1,7 +1,10 @@
-function loadStories(state = [], action) {
+function loadStories(state = [], action, id) {
   switch(action.type) {
     case 'LOAD_STORIES':
-      return action.payload; // it should contain an array of posts
+      console.log(state);
+      // console.log({ id: action.payload });
+      // [id: action.payload]
+      return action.payload; // should contain a json object
     default:
       return state;
   }

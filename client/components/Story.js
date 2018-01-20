@@ -13,18 +13,19 @@ class Story extends React.Component {
 
   componentDidMount() {
     this.fetchStory(); // fetch top stories from hacker news API
+    // console.log(this.props);
   }
 
   fetchStory() {
     const storyUrl = `https://hacker-news.firebaseio.com/v0/item/${this.props.post}.json`;
 
-    fetch(storyUrl)
-    .then(response => response.json()
-    .then(data => this.setState({ story: data })));
-
     // fetch(storyUrl)
     // .then(response => response.json()
-    // .then(data => this.props.loadStories(data)));
+    // .then(data => this.setState({ story: data })));
+
+    fetch(storyUrl)
+    .then(response => response.json()
+    .then(data => this.props.loadStory(data, this.props.id)));
   }
 
   // parse the full url and only return the domain

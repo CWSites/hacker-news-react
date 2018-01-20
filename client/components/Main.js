@@ -26,7 +26,7 @@ class Main extends React.Component {
         <Header />
         <div className="news">
           <ol className="news-articles">
-            {this.props.posts.slice(0, 25).map((post, i) => <Story {...this.props.post} key={i} id={i} post={post} />)}
+            {this.props.posts.slice(0, 25).map((post, i) => <Story {...this.props.post} key={i} id={i} post={post} loadStory={this.props.loadStories} />)}
           </ol>
           <a href="#" onClick={() => this.loadMorePosts(25)}>More</a>
         </div>

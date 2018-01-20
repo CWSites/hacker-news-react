@@ -5,9 +5,10 @@ export function loadPosts(post_ids) {
   }
 }
 
-export function loadStories(story) {
+export function loadStories(story, i) {
   return {
     type: 'LOAD_STORIES',
-    payload: story
+    payload: story,
+    id: i
   }
 }
