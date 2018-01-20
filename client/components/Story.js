@@ -11,26 +11,21 @@ class Story extends React.Component {
     };
   }
 
-  // TODO: need to bring over fetch from Main.js
   componentDidMount() {
-    console.log(this.props);
-
-    const storyUrl = `https://hacker-news.firebaseio.com/v0/item/${this.props.post}.json`;
-    const that = this;
-    const url = storyUrl;
-
-    fetch(url).then(function(response) {
-      response.json()
-    .then(function(data) {
-        that.setState({ story: data });
-      });
-    });
+    this.fetchStory(); // fetch top stories from hacker news API
   }
 
-  // shouldComponentUpdate -- need to add this here to prevent rendering until data is complete
-  // shouldComponentUpdate() {
+  fetchStory() {
+    const storyUrl = `https://hacker-news.firebaseio.com/v0/item/${this.props.post}.json`;
 
-  // }
+    fetch(storyUrl)
+    .then(response => response.json()
+    .then(data => this.setState({ story: data })));
+
+    // fetch(storyUrl)
+    // .then(response => response.json()
+    // .then(data => this.props.loadStories(data)));
+  }
 
   // parse the full url and only return the domain
   parseDomain(url) {
@@ -49,7 +44,6 @@ class Story extends React.Component {
 
   parseTimestamp(timestamp) {
     let now = moment().unix();
-    // let time = Math.trunc((now - timestamp)/60);
     let time = Math.trunc((now - timestamp)/60);
     let postTime = "";
 

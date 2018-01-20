@@ -7,8 +7,7 @@ import Story from './Story';
 class Main extends React.Component {
 
   componentDidMount() {
-    // fetch top stories from hacker news API
-    this.fetchData();
+    this.fetchData(); // fetch top stories from hacker news API
   }
 
   fetchData() {
@@ -19,7 +18,6 @@ class Main extends React.Component {
 
   loadMorePosts(num_posts) {
     console.log('load ' + num_posts + ' more posts...');
-
   }
 
   render() {
