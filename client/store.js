@@ -5,8 +5,7 @@ import rootReducer from './reducers/index';
 
 // create an object for the default data
 const defaultState = {
-  posts: [],
-  stories: []
+  posts: []
 };
 
 const store = createStore(rootReducer, defaultState);

@@ -5,7 +5,7 @@ class Story extends React.Component {
   constructor(){
     super();
 
-    // getInitialState
+    // set initial state
     this.state = {
       story: {}
     };
@@ -23,25 +23,23 @@ class Story extends React.Component {
 
   // parse the full url and only return the domain
   parseDomain(url) {
-    let domain = url;
-
     if(url) {
       if (url.indexOf("://") > -1) {
-        domain = url.split('/')[2];
+        url = url.split('/')[2];
       } else {
-        domain = url.split('/')[0];
+        url = url.split('/')[0];
       }
     }
 
-    return domain;
+    return url;
   }
 
   parseTimestamp(timestamp) {
-    let now = moment().unix();
-    let time = Math.trunc((now - timestamp)/60);
-    let postTime = '';
+    let now = moment().unix(),
+        time = Math.trunc((now - timestamp)/60),
+        postTime = '';
 
-    // make time comparison in minutes to determine display
+    // time comparison in minutes to determine display
     if (time > 2880) {
       postTime = Math.trunc(time / 24) + ' days';
     } else if (time > 1440) {
@@ -60,10 +58,9 @@ class Story extends React.Component {
   }
 
   render() {
-    console.log(this.state.story);
-    const details = this.state.story;
-    const domain = this.parseDomain(details.url);
-    const timestamp = this.parseTimestamp(details.time);
+    const details = this.state.story,
+          domain = this.parseDomain(details.url),
+          timestamp = this.parseTimestamp(details.time);
 
     return (
       <li>

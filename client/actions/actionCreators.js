@@ -4,10 +4,3 @@ export function loadPosts(post_ids) {
     payload: post_ids
   }
 }
-
-export function loadStories(story) {
-  return {
-    type: 'LOAD_STORIES',
-    payload: story
-  }
-}

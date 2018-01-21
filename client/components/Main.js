@@ -26,7 +26,7 @@ class Main extends React.Component {
         <Header />
         <div className="news">
           <ol className="news-articles">
-            {this.props.posts.map((post, i) => <Story {...this.props.post} key={i} id={i} post={post} store={this.props} />)}
+            {this.props.posts.map((post, i) => <Story {...this.props.post} key={i} id={i} post={post} />)}
           </ol>
           <a href="#" onClick={() => this.loadMorePosts(25)}>More</a>
         </div>
