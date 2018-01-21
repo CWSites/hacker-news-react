@@ -12,9 +12,10 @@ class Story extends React.Component {
   }
 
   componentDidMount() {
-    this.fetchStory(); // fetch story details
+    this.fetchStory();
   }
 
+  // fetch story details
   fetchStory() {
     fetch(`https://hacker-news.firebaseio.com/v0/item/${this.props.post}.json`)
     .then(response => response.json()
@@ -34,12 +35,12 @@ class Story extends React.Component {
     return url;
   }
 
+  // time comparison in minutes to determine display
   parseTimestamp(timestamp) {
     let now = moment().unix(),
         time = Math.trunc((now - timestamp)/60),
         postTime = '';
 
-    // time comparison in minutes to determine display
     if (time > 2880) {
       postTime = Math.trunc(time / 24) + ' days';
     } else if (time > 1440) {

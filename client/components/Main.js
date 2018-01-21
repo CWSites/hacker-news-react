@@ -7,15 +7,17 @@ import Story from './Story';
 class Main extends React.Component {
 
   componentDidMount() {
-    this.fetchData(); // fetch top 25 stories
+    this.fetchData();
   }
 
+  // fetch top 25 stories
   fetchData() {
     fetch('https://hacker-news.firebaseio.com/v0/topstories.json')
     .then(response => response.json()
     .then(data => this.props.loadPosts(data)));
   }
 
+  // work in progress...
   loadMorePosts(num_posts) {
     console.log('load ' + num_posts + ' more posts...');
   }
