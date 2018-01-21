@@ -12,27 +12,20 @@ class Story extends React.Component {
   }
 
   componentDidMount() {
-    this.fetchStory(); // fetch top stories from hacker news API
-    // console.log(this.props);
+    this.fetchStory(); // fetch story details
   }
 
   fetchStory() {
-    const storyUrl = `https://hacker-news.firebaseio.com/v0/item/${this.props.post}.json`;
-
-    // fetch(storyUrl)
-    // .then(response => response.json()
-    // .then(data => this.setState({ story: data })));
-
-    fetch(storyUrl)
+    fetch(`https://hacker-news.firebaseio.com/v0/item/${this.props.post}.json`)
     .then(response => response.json()
-    .then(data => this.props.loadStory(data, this.props.id)));
+    .then(data => this.setState({ story: data })));
   }
 
   // parse the full url and only return the domain
   parseDomain(url) {
     let domain = url;
 
-    if (url) {
+    if(url) {
       if (url.indexOf("://") > -1) {
         domain = url.split('/')[2];
       } else {
@@ -46,7 +39,7 @@ class Story extends React.Component {
   parseTimestamp(timestamp) {
     let now = moment().unix();
     let time = Math.trunc((now - timestamp)/60);
-    let postTime = "";
+    let postTime = '';
 
     // make time comparison in minutes to determine display
     if (time > 2880) {
@@ -67,6 +60,7 @@ class Story extends React.Component {
   }
 
   render() {
+    console.log(this.state.story);
     const details = this.state.story;
     const domain = this.parseDomain(details.url);
     const timestamp = this.parseTimestamp(details.time);

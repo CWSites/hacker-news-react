@@ -7,7 +7,7 @@ import Story from './Story';
 class Main extends React.Component {
 
   componentDidMount() {
-    this.fetchData(); // fetch top stories from hacker news API
+    this.fetchData(); // fetch top 25 stories
   }
 
   fetchData() {
@@ -26,7 +26,7 @@ class Main extends React.Component {
         <Header />
         <div className="news">
           <ol className="news-articles">
-            {this.props.posts.slice(0, 25).map((post, i) => <Story {...this.props.post} key={i} id={i} post={post} loadStory={this.props.loadStories} />)}
+            {this.props.posts.map((post, i) => <Story {...this.props.post} key={i} id={i} post={post} store={this.props} />)}
           </ol>
           <a href="#" onClick={() => this.loadMorePosts(25)}>More</a>
         </div>
