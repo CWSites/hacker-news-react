@@ -38,4 +38,10 @@ class Main extends React.Component {
   }
 }
 
+Main.propTypes = {
+  loadPosts: React.PropTypes.func.isRequired,
+  posts: React.PropTypes.array.isRequired,
+  post: React.PropTypes.object.isRequired
+}
+
 export default Main;

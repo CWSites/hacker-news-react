@@ -76,4 +76,8 @@ class Story extends React.Component {
   }
 }
 
+Story.propTypes = {
+  post: React.PropTypes.object.isRequired
+}
+
 export default Story;
